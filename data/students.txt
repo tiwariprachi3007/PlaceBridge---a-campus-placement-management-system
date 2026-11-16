@@ -1,0 +1,7 @@
+Rahul Sharma|rahul.sharma@placebridge.edu|B.Tech Computer Science|8.9|Shortlisted|21CS014|Java, C++, SQL|86
+Sneha Patel|sneha.patel@placebridge.edu|B.Tech Information Technology|9.2|Selected|21IT009|Distributed Systems, Cloud|94
+Amit Verma|amit.verma@placebridge.edu|B.Tech Electronics & Comm|7.8|Shortlisted|21EC031|Embedded C, Verilog|74
+Pooja Nair|pooja.nair@placebridge.edu|B.Tech Computer Science|8.6|Selected|21CS022|SQL, Python, Docker|82
+Vikram Singh|vikram.singh@placebridge.edu|B.Tech Mechanical Eng|6.9|Registered|21ME017|CAD, Thermodynamics|63
+Neha Joshi|neha.joshi@placebridge.edu|B.Tech Computer Science|9.1|Shortlisted|21CS027|Python, React, Cloud|91
+Rohan Desai|rohan.desai@placebridge.edu|B.Tech Electrical Eng|7.4|Registered|21EE012|C++, Embedded, IoT|69

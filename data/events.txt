@@ -1,0 +1,13 @@
+2026-10-02|10:00|Cognizant Drive|Completed|Campus presentation and aptitude round|Cognizant|Completed
+2026-10-09|11:00|Capgemini Test|Assessment|Online aptitude assessment|Capgemini|Completed
+2026-10-11|10:00|L&T Interviews|Interview|Panel interviews|L&T Technology|Completed
+2026-10-20|10:00|Infosys Online|Assessment|Online Coding Assessment (Lab 3)|Infosys|Open
+2026-10-24|10:00|TCS Digital Drive|Interview|Technical & HR Interview Panels|TCS Digital|Scheduled
+2026-10-29|10:00|Wipro Technical|Interview|Technical Evaluation Stage|Wipro|Scheduled
+2026-11-03|14:00|Accenture Test|Assessment|Online technical assessment|Accenture|Scheduled
+2026-11-03|10:00|Interview: Sneha Patel|Interview|Technical Evaluation Panel 1|Accenture|Confirmed
+2026-11-03|11:00|Interview: Pooja Nair|Interview|Technical Evaluation Panel 1|Accenture|Confirmed
+2026-11-03|12:00|Interview: Rahul Sharma|Interview|HR & Leadership Discussion|Accenture|Awaiting Reply
+2026-11-11|10:00|L&T Drive|Assessment|Core systems screening|L&T Technology|Scheduled
+2026-11-15|10:00|Microsoft Drive|Interview|Technical Screening + Panel|Microsoft|Scheduled
+2026-11-18|10:00|Google Drive|Assessment|Online Coding + System Design|Google|Open

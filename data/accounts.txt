@@ -1,0 +1,3 @@
+officer@placebridge.edu|2dfec207cb394026|726dce06829c63700bce9cd10a036e83f28bdfa08dcca834d08ff4b25c5e9593|Admin|Prof. Rajesh Verma|PO-2024
+rahul.sharma@placebridge.edu|946118dea98942ba|de95a62c3a382aa8f9a686e9ae2fa31cf288c2f787c7233dd54bf5f419610dae|Student|Rahul Sharma|B.Tech Computer Science
+recruiter@accenture.com|5118015c6b464001|038e90d0026af7e334ca4f41a92a8583930a9752f5d6b9f8f31de5b3057b1a5e|Recruiter|Accenture Campus Hiring|Accenture

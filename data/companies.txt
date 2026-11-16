@@ -1,0 +1,7 @@
+Google|Software Engineer|28 LPA|Open|2026-11-18|8.5
+Microsoft|Cloud Solutions Architect|24 LPA|Open|2026-11-15|8.0
+Amazon|Systems Development Engineer|22 LPA|Open|2026-11-22|7.5
+Infosys|Systems Engineer Specialist|9.5 LPA|Open|2026-10-20|7.5
+Accenture|Technology Consultant|8.0 LPA|Scheduled|2026-11-03|6.5
+TCS Digital|Associate Software Engineer|7.5 LPA|Completed|2026-10-24|7.0
+L&T Technology|Core Systems Engineer|7.2 LPA|Open|2026-11-11|6.5

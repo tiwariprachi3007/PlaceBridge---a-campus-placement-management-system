@@ -40,6 +40,18 @@ Developed as an Object-Oriented Programming (OOP) project, PlaceBridge provides 
 *Personalized drive discovery, tier-based eligibility tracking, interviews & application status*
 ![Student Portal](docs/screenshots/student-portal.png)
 
+<br/>
+
+### 4. Interactive Resume Studio
+*Real-time ATS resume scoring, multi-section builder & instant PDF export*
+![Resume Studio](docs/screenshots/resume-studio.png)
+
+<br/>
+
+### 5. Placement Analytics & Institutional Reports
+*Real-time placement rates, branch breakdown charts & compensation brackets*
+![Placement Reports & Analytics](docs/screenshots/reports-analytics.png)
+
 </div>
 
 ---

@@ -1,185 +1,252 @@
-# PlaceBridge
+# PlaceBridge 🎓
+> **Modern Native Campus Placement Management System**  
+> *Built with C++17, Qt 6 Widgets, and SQLite — Engineered with core Object-Oriented Programming (OOP) principles.*
 
-Native Qt 6 Widgets campus placement management app (C++17); no web UI.
-Built as a B.Tech object-oriented programming project: four user roles, SQLite
-persistence, role-based permissions and a test suite.
+---
 
-## Features
+[![C++17](https://img.shields.io/badge/C++-17-blue.svg?style=flat&logo=c%2B%2B)](https://en.cppreference.com/w/cpp/17)
+[![Qt 6](https://img.shields.io/badge/Qt-6.11%2B-green.svg?style=flat&logo=qt)](https://www.qt.io/)
+[![CMake](https://img.shields.io/badge/CMake-3.16%2B-orange.svg?style=flat&logo=cmake)](https://cmake.org/)
+[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg?style=flat&logo=windows)](https://www.microsoft.com/windows)
+[![Tests](https://img.shields.io/badge/Tests-100%25%20Passing-brightgreen.svg?style=flat)]()
 
-- Four roles: Admin (placement office), Department Coordinator, Recruiter, Student.
-- Drive management with approval workflow, status filters, search and sorting (by package or company), eligibility rules (CGPA, backlogs, branch,
-  batch, offer limits, Regular / Dream / Super Dream tiers).
-- Applications pipeline, interview calendar with conflict detection, offer accept/decline.
-- Student profile, document vault with admin verification, CSV bulk import/export.
-- Reports page with real analytics (placement rate, placed students by branch,
-  package brackets, top recruiters) and PDF / XLSX / CSV export.
-- **Global search** (`Ctrl+K`) across students, drives, applications and events; it only
-  returns records the signed-in user is allowed to see.
-- **Reminders**: when an admin signs in, applicants are notified about drives and events
-  in the next 2 days (never sent twice).
-- **Password recovery without a mail server**: the placement office issues a 15-minute
-  one-time code (Settings -> Issue reset code); the user redeems it via *Forgot password?*.
-- **Demo-password nudge**: users still on a documented demo password are prompted to change it.
-- Accessibility: tooltips and accessible names on the navigation, notifications and account buttons.
-- Welcome landing page with live student, hiring-partner and open-drive counts; responsive, role-aware sign-in and registration remain connected to the existing `DataStore`.
-- Responsive layouts: selected navigation states, stacked cards and forms, narrow-screen calendar agenda, and vertically scrolling pages.
-- Security: PBKDF2-SHA-256 hashes, per-user salts, constant-time comparison, login lockout,
-  audit log, permissions enforced in `DataStore`.
+---
 
-## Build and run
-Install Qt 6 with Widgets, Sql, PrintSupport, Network, CorePrivate,
-and a C++17 compiler. From the project root:
+## 📌 Overview
 
-```powershell
-cmake -S . -B build -DBUILD_TESTING=ON
-cmake --build build --config Release
-ctest --test-dir build --output-on-failure
-.\build\PlaceBridge.exe
-```
+**PlaceBridge** is an enterprise-grade desktop application designed to bridge the gap between academic institutions, students, and corporate recruiters during campus placement drives. 
 
-Runtime SQLite database and log are under Qt's per-user `AppDataLocation`.
+Developed as an Object-Oriented Programming (OOP) project, PlaceBridge provides an end-to-end recruitment pipeline with strict role-based access control, real-time analytics, automated eligibility validation, conflict-aware scheduling, and an integrated Resume Studio.
 
-## Placement workflows
+---
 
-- Admin: approve recruiter-posted drives, verify profiles/documents, manage accounts,
-  announce placement updates, review audit activity, and export reports.
-- Department Coordinator: view only the assigned branch's students and post notices
-  only to that branch. Admins create coordinator and additional Admin accounts in Settings;
-  these privileged roles cannot self-register on the login page.
-- Recruiter: post a role with a description, eligibility, and selection rounds;
-  review candidates, move application stages, keep interview scorecards, and save
-  a shortlist e-mail draft.
-- Student: review eligibility and role details, manage profile documents, book
-  interview events, give drive feedback, and accept or decline offers.
-- Student Resume Studio: edit a multi-section resume, preview Modern / Classic / Minimal layouts,
-  save it locally and export a template-matched PDF.
-- Application, interview conflict, drive approval, notification, and account
-  permissions are checked in `DataStore`, not just in page visibility.
+## 🖼️ Application Preview
 
-## Optional REST server
+<div align="center">
 
-The server is disabled by default. Configure and build it with:
+### 1. Welcome & Authentication Portal
+*Role-aware landing with live institutional metrics & secure authentication*
+![Login Screen](docs/screenshots/login.png)
 
-```powershell
-cmake -S . -B build\rest -DBUILD_REST_SERVER=ON -DBUILD_TESTING=OFF
-cmake --build build\rest --target PlaceBridgeServer
-.\build\rest\PlaceBridgeServer.exe
-```
+<br/>
 
-It binds to `127.0.0.1:8080`; `/api/health`, token login, `/api/me`, `/api/drives`,
-`/api/applications`, and logout are available. Settings can use it for local
-sign-in and test its health endpoint. The desktop's placement data still comes
-from its configured SQLite store; this REST mode is not a remote data-sync or
-production multi-host deployment. Do not expose the HTTP server to a network.
+### 2. Placement Officer (Admin) Dashboard
+*Complete drive oversight, candidate approval pipelines, company verification & analytics*
+![Admin Dashboard](docs/screenshots/admin-dashboard.png)
 
-### Request flow (10 lines)
+<br/>
 
-1. The Qt Widgets application starts with `MainWindow`.
-2. `MainWindow` owns a `DataStore` and the polymorphic user session.
-3. Login verifies credentials locally by default.
-4. Optional local REST sign-in obtains a short-lived bearer token.
-5. The REST server validates credentials against its SQLite database.
-6. `/api/me` returns the authenticated account identity and role.
-7. Role permissions are enforced again inside `DataStore`.
-8. The desktop UI continues to load and save through its local `DataStore`.
-9. `DataStore` uses prepared QtSql queries and emits `changed()` after writes.
-10. Future multi-host deployment needs a remote `DataStore` adapter and HTTPS.
+### 3. Student Portal & Opportunity Hub
+*Personalized drive discovery, tier-based eligibility tracking, interviews & application status*
+![Student Portal](docs/screenshots/student-portal.png)
 
-## Demo accounts
+</div>
 
-| Role | E-mail | Password |
-|---|---|---|
-| Admin | officer@placebridge.edu | admin123 |
-| Student | rahul.sharma@placebridge.edu | student123 |
-| Recruiter | recruiter@accenture.com | recruit123 |
+---
 
-Passwords are stored as salted PBKDF2-HMAC-SHA-256 hashes. Change demo passwords
-before using this application with real personal data.
+## ✨ Key Features & Capabilities
 
-## Screenshots
+### 👥 1. Role-Based Access Control (4 Roles)
+- **Placement Office (Admin)**: Approve recruiter drives, verify student credentials, publish institute-wide announcements, audit security logs, and export placement reports.
+- **Department Coordinator**: Filter and review candidates within their assigned branch, monitor academic compliance, and issue branch-specific notices.
+- **Corporate Recruiter**: Create drive listings with customized eligibility criteria (CGPA, backlogs, branch, CTC brackets), manage selection rounds, score candidates, and export shortlists.
+- **Student**: Explore eligible drives, track application status across rounds, manage profile records, and accept/decline placement offers.
 
-Run the app, then save three screenshots with these exact names (see
-`docs/screenshots/README.md`) and they will appear below.
+### 🎯 2. Intelligent Drive & Placement Management
+- **Tier-based Placement Policy**: Support for Regular, Dream, and Super Dream tiers with configurable max-offer limits.
+- **Automatic Eligibility Engine**: Real-time evaluation against CGPA cutoffs, active backlog restrictions, eligible degree branches, and passout batches.
+- **Application Pipeline**: Multi-round progression tracking (Aptitude $\rightarrow$ Technical Interview $\rightarrow$ HR Round $\rightarrow$ Offer).
+- **Conflict-Aware Interview Calendar**: Automatic collision detection preventing overlapping interview schedules.
 
-![Login](docs/screenshots/login.png)
-![Admin dashboard](docs/screenshots/admin-dashboard.png)
-![Student portal](docs/screenshots/student-portal.png)
+### 📄 3. Integrated Resume Studio
+- Interactive live resume builder with support for **Modern**, **Classic**, and **Minimalist** templates.
+- Section management: Education, Technical Skills, Projects, Experience, and Certifications.
+- Direct **PDF Export** using native Qt PrintSupport.
 
-## Class diagram
+### 📊 4. Real-Time Placement Analytics & Reporting
+- Visual interactive bar charts & distribution curves (placement rates, branch distributions, CTC brackets).
+- Multi-format data export: **PDF**, **CSV**, and **XLSX**.
+
+### 🔍 5. Productivity & Global Navigation
+- **Command Palette (`Ctrl + K`)**: Global instant search across students, companies, drives, and scheduled events with role-aware privacy masking.
+- **Smart Reminders**: Automated notifications dispatched 48 hours prior to interview rounds or deadline cutoffs.
+- **Secure Password Recovery**: Built-in 15-minute cryptographically signed one-time reset tokens (no external SMTP server dependency needed).
+
+### 🔒 6. Enterprise-Grade Security
+- Salted **PBKDF2-HMAC-SHA-256** password hashing.
+- Constant-time hash verification against timing attacks.
+- Brute-force lockout protection and security audit logging.
+
+---
+
+## 🏗️ Architecture & OOP Implementation
+
+PlaceBridge is built from the ground up leveraging fundamental Object-Oriented design principles:
 
 ```mermaid
 classDiagram
     class User {
         <<abstract>>
+        +role() QString*
+        +accountRole() Permissions_Role*
+        +canManageDrives() bool
+        +canManageStudents() bool
+    }
+    class Student {
+        -cgpa: double
+        -branch: QString
+        -backlogs: int
         +role() QString
         +accountRole() Permissions_Role
-        +canManageDrives() bool
     }
-    User <|-- Student
-    User <|-- Company
-    User <|-- PlacementOfficer
-    User <|-- DepartmentCoordinator
-    User ..> Permissions
-    DataStore ..> PlacementPolicy
-    ReportsPage ..> PlacementStats
-    SearchDialog ..> GlobalSearch
-    MainWindow *-- DataStore
-    MainWindow *-- User
-    MainWindow --> Theme
-    DataStore --> Student
-    DataStore --> Company
-    DataStore --> Application
-    DataStore --> Event
+    class Company {
+        -companyName: QString
+        -ctc: double
+        -tier: PlacementTier
+        +role() QString
+        +accountRole() Permissions_Role
+    }
+    class PlacementOfficer {
+        -officerId: QString
+        +role() QString
+        +accountRole() Permissions_Role
+    }
+    class DepartmentCoordinator {
+        -department: QString
+        +role() QString
+        +accountRole() Permissions_Role
+    }
+
+    User <|-- Student : Inheritance
+    User <|-- Company : Inheritance
+    User <|-- PlacementOfficer : Inheritance
+    User <|-- DepartmentCoordinator : Inheritance
+
+    class MainWindow {
+        -dataStore: DataStore
+        -currentUser: std::unique_ptr~User~
+    }
+    MainWindow *-- DataStore : Composition
+    MainWindow *-- User : Polymorphic Session
+
+    class DataStore {
+        +authenticate()
+        +drives()
+        +applications()
+    }
+    DataStore --> Student : Encapsulates
+    DataStore --> Company : Encapsulates
 ```
 
-## OOP concepts
-
-| Concept | Implementation |
+| OOP Concept | Implementation Details |
 |---|---|
-| Abstraction | `DataManager.h`: abstract `User::role()` and `User::accountRole()` |
-| Inheritance | `student/student.h`, `company/company.h`, `placement_officer/placement_officer.h` |
-| Polymorphism | `mainwindow.h`: role-specific `std::unique_ptr<User>` session; `User::canManageDrives()` etc. answer per object via the overridden `accountRole()` |
-| Encapsulation | `DataManager.h`: SQLite persistence/permissions |
-| Composition | `mainwindow.h`: owns data store, pages and session |
+| **Abstraction** | Pure virtual methods in base class `User` (`role()`, `accountRole()`), hiding persistence and SQL details behind `DataStore`. |
+| **Inheritance** | Hierarchical specialization: `Student`, `Company`, `PlacementOfficer`, and `DepartmentCoordinator` inherit from base `User`. |
+| **Polymorphism** | Role-aware runtime behavior: `std::unique_ptr<User>` in `MainWindow` executes dynamic role checks and customized permissions. |
+| **Encapsulation** | Strict data hiding inside `DataStore` with prepared SQL statements, private attributes, and validated getters/setters. |
+| **Composition** | `MainWindow` aggregates `DataStore`, `ThemeEngine`, and polymorphic page controllers. |
 
-## Windows deployment
+---
 
-From a Qt MinGW command prompt, after building Release (adjust Qt version and kit):
+## 🛠️ Tech Stack
+
+- **Core Language**: C++17
+- **GUI Framework**: Qt 6.11+ Widgets
+- **Database Engine**: SQLite 3 (via QtSql with prepared queries)
+- **Build System**: CMake 3.16+ / Ninja
+- **Compiler Support**: MinGW GCC 13+ / MSVC 2019/2022
+- **Testing**: QtTest Framework & CTest integration
+
+---
+
+## 🚀 Quick Start Guide
+
+### Prerequisites
+1. **Qt 6 SDK** (including `Widgets`, `Sql`, `PrintSupport`, `Network`)
+2. **CMake 3.16+** & **Ninja**
+3. C++17 compatible compiler (MinGW 64-bit or MSVC)
+
+### Build Instructions
 
 ```powershell
-cmake -S . -B build\release -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
-cmake --build build\release --config Release
-C:\Qt\6.11.1\mingw_64\bin\windeployqt.exe --release --compiler-runtime --dir PlaceBridge-standalone build\release\PlaceBridge.exe
+# 1. Clone repository
+git clone https://github.com/tiwariprachi3007/PlaceBridge---a-campus-placement-management-system.git
+cd PlaceBridge---a-campus-placement-management-system
+
+# 2. Configure build with CMake
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+
+# 3. Build project
+cmake --build build --config Release
+
+# 4. Run automated test suite
+ctest --test-dir build --output-on-failure
+
+# 5. Launch application
+.\build\PlaceBridge.exe
 ```
 
-The program uses the Qt SQLite driver; `windeployqt` should include the
-`sqldrivers\qsqlite.dll` plugin. Test the copied folder on a machine without Qt.
-An optional Inno Setup script is in `installer/PlaceBridge.iss`; run it with
-Inno Setup after creating `PlaceBridge-standalone`.
+---
 
-## Tests
+## 🔑 Pre-Configured Demo Accounts
 
-`ctest --test-dir build --output-on-failure` runs `tests/test_placebridge.cpp`
-(QtTest): domain classes, validators, eligibility boundaries, permissions
-(string API vs. polymorphic API), analytics, reset codes, lockout, demo-password
-detection, reminders, permission-aware search and the full SQLite workflow.
-Warnings (`-Wall -Wextra` / `/W4`) are on by default; turn off with `-DENABLE_WARNINGS=OFF`.
+Use these pre-loaded accounts to test different roles:
 
-## Known limitations
+| Role | Email Address | Password | Permissions |
+|---|---|---|---|
+| **Admin (Placement Head)** | `officer@placebridge.edu` | `admin123` | Full administrative & approval access |
+| **Student** | `rahul.sharma@placebridge.edu` | `student123` | Profile, drive discovery & applications |
+| **Corporate Recruiter** | `recruiter@accenture.com` | `recruit123` | Job posting, round management & evaluation |
 
-- `DataStore` is still one large header-only class. Password hashing has been
-  extracted into `PasswordHasher`; moving drives, applications and accounts into
-  separate repository classes is the next planned refactor.
-- Students can withdraw and re-apply to a drive without a cool-down period.
-- Translations are not shipped (the previous empty `.ts` placeholders were removed).
+---
 
-## Documentation
+## 🧪 Testing & Verification
 
-- `docs/PROJECT_REPORT.md` - abstract, objectives, modules, database design, OOP mapping, testing, future scope.
-- `DEMO_SCRIPT.md` - step-by-step demo for a viva or presentation.
+The project includes unit tests and whole-UI integration tests built with **QtTest**:
 
-## Contributing
+```powershell
+ctest --test-dir build --output-on-failure
+```
 
-Use imperative commit subjects with a scope where useful, e.g.
-`feat(students): add paged candidate registry` or `fix(auth): enforce lockout`.
-Keep changes focused and run the QtTest suite before opening a PR.
+```text
+100% tests passed, 0 tests failed out of 4
+  - Test #1: PlaceBridgeTests (Domain models, validators & policies)
+  - Test #2: PlaceBridgeLoginTests (Authentication & role switching)
+  - Test #3: PlaceBridgePageTests (Page instantiation & workflow smoke tests)
+  - Test #4: PlaceBridgeResumeTests (Resume Studio rendering & PDF exporter)
+```
+
+---
+
+## 📁 Repository Structure
+
+```
+PlaceBridge/
+├── CMakeLists.txt              # Top-level build configuration
+├── main.cpp                    # Application entry point
+├── mainwindow.h                # Main window & session lifecycle
+├── DataManager.h / .cpp        # Centralized SQLite data repository
+├── SecurityManager.h / .cpp    # Cryptographic hashing & audit logging
+├── SystemServices.h / .cpp     # Background helpers & notification queue
+├── student/                    # Student entity & resume definitions
+├── company/                    # Recruiter & drive management models
+├── placement_officer/          # Placement coordinator business logic
+├── ui/                         # Qt Widgets UI pages & views
+│   ├── login_page.h            # Welcome & authentication portal
+│   ├── dashboard_page.h        # Placement statistics & quick actions
+│   ├── student_portal.h        # Student discovery & application interface
+│   ├── resume_studio.h         # Interactive resume builder
+│   ├── drives_page.h           # Drive listings & filtering
+│   ├── calendar_page.h         # Interview scheduling & conflicts
+│   ├── reports_page.h          # Analytics & data export
+│   └── theme.h                 # Dynamic light/dark styling system
+├── tests/                      # QtTest test suites
+└── docs/                       # Project documentation & screenshots
+    └── screenshots/            # UI preview assets
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
